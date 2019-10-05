@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Pager } from "@progress/kendo-react-data-tools";
+import { Column, Row } from "simple-flexbox";
+
 import DemoConfigurator from "./demoConfigurator";
 import products from "./data/pager-grid-products.json";
 import "./PagerWrap.scss";
@@ -36,7 +38,7 @@ const PagerWrap = () => {
     }
   };
 
-  let subProducts = products.slice(skip, (take+skip))
+  let subProducts = products.slice(skip, (skip+take))
 
   return (
     <>
@@ -52,12 +54,19 @@ const PagerWrap = () => {
         previousNext={pageState.previousNext}
         onPageChange={handlePageChange}
       />
-    <div className="pager-products">
-      <span>total: {total}</span> &nbsp; <span>skip: {skip}</span> &nbsp; <span>take: {take}</span><br />
-      <ul className="repeat-products">
+    <div className="paged-products">
+      <Row vertical="center">
+        <Column flexGrow={1} >
+          <div className="paged-params">total: {total} &nbsp; skip: {skip} &nbsp; take: {take}</div>
+        </Column>
+        <Column flexGrow={1} horizontal="end">
+          <code className="paged-code">product.slice({skip},{take+skip})</code>
+        </Column>
+      </Row>
+      <ul className="product-list">
         { subProducts.map((item) => <li key={item.ProductID}>{item.ProductName}</li>) }
       </ul>
-      <span><code className="pager-code">product.slice({skip},{take+skip})</code></span>
+      
     </div>
     </>
   );

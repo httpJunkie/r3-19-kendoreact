@@ -1,12 +1,15 @@
-.pager-products {
+.paged-products {
   margin-top: 1em;
+  .paged-params {
+    padding: 6px;
+  }
 }
 
-.repeat-products {
+.product-list {
   display: block;
   padding: 1em;
   list-style-type: none;
-  border: 1px solid rgba(0, 0, 0, 0.20);
+
   li {
     display: auto;
     padding: 6px;
@@ -14,15 +17,28 @@
   }
 }
 
+.app-container.light {
+  .product-list {
+    background-color: rgb(243, 243, 243);
+    border: 1px solid rgba(0, 0, 0, 0.10);
+  }
+  .paged-code {
+    font-size: 1.25em;
+    padding: 6px;
+    background-color: rgb(243, 243, 243);
+    border: 1px solid rgba(0, 0, 0, 0.10);
+  }
+}
+
 .app-container.dark {
-  .repeat-products {
+  .product-list {
+    background-color: #424242;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+  }
+  .paged-code {
+    padding: 6px;
     background-color: #424242;
     border: 1px solid rgba(255, 255, 255, 0.20);
   }
 }
 
-.pager-code {
-  padding: 6px;
-  background-color: #424242;
-  border: 1px solid rgba(255, 255, 255, 0.20);
-}
