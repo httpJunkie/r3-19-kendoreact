@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { Switch } from "@progress/kendo-react-inputs";
+import { DropDownList } from "@progress/kendo-react-dropdowns";
 
 const Foot = () => {
   const context = useContext(AppContext);
@@ -8,6 +9,10 @@ const Foot = () => {
 
   const handleSwitch = () => {
     context.changeTheme(isLight ? 'dark' : 'light');
+  }
+
+  const localeChanged = (event) => {
+    context.changeLocale(event.target.value);
   }
 
   return (
@@ -18,6 +23,12 @@ const Foot = () => {
         checked={isLight}
         onLabel={"light theme"}
         offLabel={"dark theme"}
+      /> | &nbsp;
+      <DropDownList
+        data={context.availableLocales}
+        onChange={localeChanged}
+        textField="code"
+        value={context.selectedLocale}
       />
     </div>
   );
