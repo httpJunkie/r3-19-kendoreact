@@ -120,8 +120,8 @@ footer div {
   }
 
   /* Kendo material Light*/
-  @import "/sass/blue-pink-light/all.scss";
-  @import "/sass/blue-pink-light/variables.scss";
+  @import "/sass-themes/blue-pink-light/all.scss";
+  @import "/sass-themes/blue-pink-light/variables.scss";
 }
 
 /* Dark Theme */
@@ -147,6 +147,6 @@ footer div {
   }
 
   /* Kendo material dark*/
-  @import "./sass/cyan-amber-dark/all.scss";
-  @import "./sass/cyan-amber-dark/variables.scss";
+  @import "./sass-themes/cyan-amber-dark/all.scss";
+  @import "./sass-themes/cyan-amber-dark/variables.scss";
 }
