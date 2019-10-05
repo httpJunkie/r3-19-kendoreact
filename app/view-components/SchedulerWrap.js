@@ -2,6 +2,7 @@ import React from "react";
 import { displayDate, sampleData } from './data/events-utc';
 import { Scheduler, TimelineView, DayView, MonthView } from '@progress/kendo-react-scheduler';
 import { guid } from '@progress/kendo-react-common';
+import "./SchedulerWrap.scss";
 
 document.title = `KendoReact Scheduler ~ Telerik R3 2019 Demo`;
 
