@@ -1,0 +1,28 @@
+.pager-products {
+  margin-top: 1em;
+}
+
+.repeat-products {
+  display: block;
+  padding: 1em;
+  list-style-type: none;
+  border: 1px solid rgba(0, 0, 0, 0.20);
+  li {
+    display: auto;
+    padding: 6px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.20);
+  }
+}
+
+.app-container.dark {
+  .repeat-products {
+    background-color: #424242;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+  }
+}
+
+.pager-code {
+  padding: 6px;
+  background-color: #424242;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+}

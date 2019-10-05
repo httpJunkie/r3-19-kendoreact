@@ -6,7 +6,7 @@ const DemoConfigurator = props => {
   return (
     <>
       <Row vertical="center">
-        <Column flexGrow={1} horizontal="left">
+        <Column flexGrow={1} horizontal="start">
           <dl>
             <dt>Pager type:</dt>
             <dd>
@@ -46,7 +46,7 @@ const DemoConfigurator = props => {
             </dd>
           </dl>
         </Column>
-        <Column flexGrow={1} horizontal="left">
+        <Column flexGrow={1} horizontal="start">
           <input className="k-checkbox" checked={values.info} id="showInfo" type="checkbox"
             onChange={event =>
               props.onChange({ value: event.target.checked, setting: "info" })
