@@ -18,7 +18,9 @@ const Foot = () => {
   return (
     <Row>
       <Column flexGrow={1} >
-        <div className="foot-info">❄️R3 KendoReact 2019 | &nbsp; <Switch onChange={handleThemeSwitch} checked={isLight} onLabel={"light theme"} offLabel={"dark theme"} /></div>
+        <span className="foot-info">
+          ❄️R3 KendoReact 2019 | &nbsp; <Switch onChange={handleThemeSwitch} checked={isLight} onLabel={"light theme"} offLabel={"dark theme"} />
+        </span>
       </Column>
       <Column flexGrow={1} horizontal="end">
         <DropDownList onChange={handleLocaleChange} data={context.availableLocales} textField="code" value={context.locale} />
