@@ -13,6 +13,16 @@ const AppProvider = props => {
     themeMode: localStorage.getItem('kr_todo_theme') || preferredTheme,
     changeTheme: mode => setApp(data => (
       {...data, themeMode: mode }
+    )),
+    selectedLocale: { code: "en-US" },
+    availableLocales: [
+      { code: "en-US" },
+      { code: "de-DE" },
+      { code: "es-ES" },
+      { code: "zh-CN" }
+    ],
+    changeLocale: locale => setApp(data => (
+      {...data, selectedLocale: locale }
     ))
   });
 

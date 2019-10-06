@@ -2,6 +2,8 @@ import React, { useContext, lazy, Suspense } from "react";
 import { AppContext } from "./context/AppContext";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useMediaPredicate } from "react-media-hook";
+import { IntlProvider, LocalizationProvider } from '@progress/kendo-react-intl';
+import { } from './data/cldr';
 
 const Home = lazy(() => import('./view-components/Home'));
 const SchedulerWrap = lazy(() => import('./view-components/SchedulerWrap'));
@@ -23,6 +25,8 @@ const Frame = () => {
   const isMedium = useMediaPredicate("(min-width: 860px)");
   const breakpoint = isMedium ? "medium" : "small";
   return (
+    <IntlProvider locale={context.selectedLocale.code}>
+      <LocalizationProvider language={context.selectedLocale.code}>
     <BrowserRouter>
       <div className={`app-container ${breakpoint} ${context.themeMode}`}>
         <main>
@@ -60,6 +64,8 @@ const Frame = () => {
         <Sidenav />
       </div>
     </BrowserRouter>
+      </LocalizationProvider>
+    </IntlProvider>
   );
 };
 
