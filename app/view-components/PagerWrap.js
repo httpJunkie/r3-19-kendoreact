@@ -7,6 +7,7 @@ import products from "./data/pager-grid-products.json";
 import "./PagerWrap.scss";
 
 const PagerWrap = () => {
+  document.title = `KendoReact Pager ~ Telerik R3 2019 Demo`;
   const total = products.length;
   const pageSizes = [5, 10, 20];
 
