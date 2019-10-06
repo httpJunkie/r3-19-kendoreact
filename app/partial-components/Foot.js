@@ -18,7 +18,7 @@ const Foot = () => {
     <div className="foot">
       ❄️R3 KendoReact 2019 | &nbsp;
       <Switch onChange={handleThemeSwitch} checked={isLight} onLabel={"light theme"} offLabel={"dark theme"} /> | &nbsp;
-      <DropDownList onChange={handleLocaleChange} data={context.availableLocales} textField="code" value={context.selectedLocale} />
+      <DropDownList onChange={handleLocaleChange} data={context.availableLocales} textField="code" value={context.locale} />
     </div>
   );
 };

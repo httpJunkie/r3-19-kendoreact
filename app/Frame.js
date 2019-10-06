@@ -25,8 +25,8 @@ const Frame = () => {
   const isMedium = useMediaPredicate("(min-width: 860px)");
   const breakpoint = isMedium ? "medium" : "small";
   return (
-    <IntlProvider locale={context.selectedLocale.code}>
-      <LocalizationProvider language={context.selectedLocale.code}>
+    <IntlProvider locale={context.locale.code}>
+      <LocalizationProvider language={context.locale.code}>
     <BrowserRouter>
       <div className={`app-container ${breakpoint} ${context.themeMode}`}>
         <main>
