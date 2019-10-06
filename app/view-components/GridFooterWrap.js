@@ -38,7 +38,7 @@ const GridFooterWrap = () => {
 
   return (
     <Grid style={{ height: "420px" }} data={products}>
-      <Column field="ProductID" title="ID" width="50px" />
+      <Column field="ProductID" title="ID" width="70px" />
       <Column field="ProductName" title="Product Name" />
       <Column field="UnitPrice" title="Unit Price" footerCell={UnitPriceCell} />
       <Column
