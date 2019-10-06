@@ -13,12 +13,7 @@ const Foot = () => {
   return (
     <div className="foot">
       ❄️R3 KendoReact 2019 | &nbsp;
-      <Switch
-        onChange={handleSwitch}
-        checked={isLight}
-        onLabel={"light theme"}
-        offLabel={"dark theme"}
-      />
+      <Switch onChange={handleSwitch} checked={isLight} onLabel={"light theme"} offLabel={"dark theme"} />
     </div>
   );
 };

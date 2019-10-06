@@ -23,7 +23,7 @@ const ColorPaletteWrap = (props) => {
 
   const [colorValue, setColorValue] = useState("#a21616");
 
-  function onColorPalleteChange(event) {
+  function handleColorPalleteChange(event) {
     const value = event.value;
     setColorValue(value);
   }
@@ -32,18 +32,17 @@ const ColorPaletteWrap = (props) => {
     <div className="color-palette-example">
       <div className="img" style={{ backgroundColor: colorValue, backgroundImage: `url(${tshirtImage})`}} />
       <div className="description" >
+
         <h1>Comfy T-shirt with a cut-away neckline</h1>
         <p className="price">$19.99</p>
         <span>incl. VAT</span>
 
         <p className="selected-color">{colorNames[colorValue]}</p>
-        <ColorPalette
+        <ColorPalette onChange={handleColorPalleteChange}
           palette={["#37399b", "#a81c85", "#0ab3cc", "#2f7d20", "#a21616"]}
-          value={colorValue}
-          onChange={onColorPalleteChange}
-          tileSize={40}
-          defaultValue={isLight ? '#FFF': '#000'}
+          value={colorValue} tileSize={40} defaultValue={isLight ? '#FFF': '#000'}
         />
+        
         <button aria-label="Shopping Cart" className="k-button">Add to cart</button>
       </div>
     </div>

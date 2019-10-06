@@ -26,11 +26,9 @@ export class Renderers {
               if (!input || input === document.activeElement) {
                 return;
               }
-              if (input.type === "checkbox") {
-                input.focus();
-              } else {
-                input.select();
-              }
+              (input.type === "checkbox")
+                ? input.focus()
+                : input.select();
             }
           }
         : {
@@ -47,11 +45,7 @@ export class Renderers {
             }
           };
 
-    return React.cloneElement(
-      tdElement,
-      { ...tdElement.props, ...additionalProps },
-      tdElement.props.children
-    );
+    return React.cloneElement(tdElement, {...tdElement.props, ...additionalProps}, tdElement.props.children);
   };
 
   rowRender = (trElement, _dataItem) => {
@@ -76,10 +70,6 @@ export class Renderers {
         clearTimeout(this.blurTimeout);
       }
     };
-    return React.cloneElement(
-      trElement,
-      { ...trProps },
-      trElement.props.children
-    );
+    return React.cloneElement(trElement,{...trProps},trElement.props.children);
   };
 }

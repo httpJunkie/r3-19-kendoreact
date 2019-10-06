@@ -15,7 +15,7 @@ const colorNames = {
 const ColorGradientWrap = () => {
   document.title = `KendoReact GradientWrap ~ Telerik R3 2019 Demo`;
   const [colorValue, setColorValue] = useState("rgba(195, 0, 47, 1)");
-  function updateColorvalue(event) {
+  function handleGradientChange(event) {
     const value = event.value;
     setColorValue(value);
   }
@@ -30,12 +30,7 @@ const ColorGradientWrap = () => {
             'url("https://demos.telerik.com/kendo-ui/content/web/colorpicker/motor.png")'
         }}
       />
-      <ColorGradient
-        defaultValue={colorValue}
-        value={colorValue}
-        onChange={updateColorvalue}
-        style={{ marginTop: "10px" }}
-      />
+      <ColorGradient onChange={handleGradientChange} defaultValue={colorValue} value={colorValue} style={{ marginTop: "10px" }}/>
     </div>
   );
 };

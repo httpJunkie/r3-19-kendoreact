@@ -8,6 +8,8 @@ document.title = `KendoReact Scheduler ~ Telerik R3 2019 Demo`;
 
 const SchedulerWrap = () => {
   const [data, setData] = React.useState(sampleData);
+  const editableDefaults = { add: true, remove: true, drag: true, resize: true, edit: true };
+
   const handleDataChange = ({ created, updated, deleted }) => {
     setData(old => old
       // Filter the deleted items
@@ -20,12 +22,7 @@ const SchedulerWrap = () => {
   };
 
   return (
-    <Scheduler
-      data={data}
-      onDataChange={handleDataChange}
-      editable={{ add: true, remove: true, drag: true, resize: true, edit: true }}
-      defaultDate={displayDate}
-    >
+    <Scheduler onDataChange={handleDataChange} data={data} defaultDate={displayDate} editable={editableDefaults}>
       <TimelineView />
       <DayView numberOfDays={2} />
       <MonthView />
