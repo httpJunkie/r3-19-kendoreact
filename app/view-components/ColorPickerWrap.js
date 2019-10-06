@@ -25,7 +25,7 @@ const ColorPickerWrap = (props) => {
 
   const [selectedColor, setSelectedColor] = useState(palette[0]);
 
-  const onColorPickerChange = (event) => {
+  const handleColorPickerChange = (event) => {
     const value = event.value;
     setSelectedColor(value)
   };
@@ -35,8 +35,8 @@ const ColorPickerWrap = (props) => {
       <h4 style={{ textAlign: 'center' }}>{kendoColors[selectedColor]}</h4>
       <div style={{ backgroundColor: selectedColor, width: 500, height: 490, margin: 'auto', textAlign: 'center'  }}>
         <div style={{ margin: '0 auto', width: 500, height: 500, backgroundSize: 'cover', backgroundImage: `url(${kendokaImage})`}}></div>
-        <ColorPalette onChange={onColorPickerChange} {...paletteSettings} value={selectedColor} /> &nbsp; &nbsp; 
-        <ColorPicker onChange={onColorPickerChange} paletteSettings={paletteSettings} value={selectedColor} view={'palette'} tileSize={30} />
+        <ColorPalette onChange={handleColorPickerChange} {...paletteSettings} value={selectedColor} /> &nbsp; &nbsp; 
+        <ColorPicker onChange={handleColorPickerChange} paletteSettings={paletteSettings} value={selectedColor} view={'palette'} tileSize={30} />
       </div>
   </>
   )

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import {
     TreeList, TreeListToolbar, mapTree, extendDataItem,
     TreeListTextEditor, TreeListNumericEditor, TreeListDateEditor, TreeListBooleanEditor
@@ -6,126 +6,84 @@ import {
 import { Renderers } from './treeListRenderers';
 import employees from './data/tree-list';
 
-const subItemsField = 'employees';
-const expandField = 'expanded';
-const editField = 'inEdit';
-
 const columns = [
-    { field: 'name', title: 'Name', width: 280, editCell: TreeListTextEditor, expandable: true },
-    { field: 'position', title: 'Position', width: 260, editCell: TreeListTextEditor },
-    { field: 'hireDate', title: 'Hire Date', format: '{0:d}', width: 170, editCell: TreeListDateEditor },
-    { field: 'timeInPosition', title: 'Year(s) in Position', width: 170, editCell: TreeListNumericEditor },
-    { field: 'fullTime', title: 'Full Time', width: 160, editCell: TreeListBooleanEditor }
+  { field: 'name', title: 'Name', width: 280, editCell: TreeListTextEditor, expandable: true },
+  { field: 'position', title: 'Position', width: 260, editCell: TreeListTextEditor },
+  { field: 'hireDate', title: 'Hire Date', format: '{0:d}', width: 170, editCell: TreeListDateEditor },
+  { field: 'timeInPosition', title: 'Year(s) in Position', width: 170, editCell: TreeListNumericEditor },
+  { field: 'fullTime', title: 'Full Time', width: 160, editCell: TreeListBooleanEditor }
 ];
 
-// const TreeListWrap = () => {
-//   document.title = `KendoReact TreeList ~ Telerik R3 2019 Demo`;
-//   return (
-//     <div className="view-tree-list">
-//       <h1>TreeList</h1>
-//     </div>
-//   )
-// }
+const TreeListWrap = () => {
+  document.title = `KendoReact TreeList ~ Telerik R3 2019 Demo`;
 
-class TreeListWrap extends React.Component {
-  state = {
+  const [pageState, setPageState] = useState({
     data: [...employees],
     expanded: [1, 2, 32],
     editItem: undefined,
     editItemField: undefined,
     changes: false
-  };
+  });
+  
+  const subItemsField = 'employees';
+  const expandField = 'expanded';
+  const editField = 'inEdit';
 
-  renderers;
-
-  constructor(props) {
-    super(props);
-
-    const enterEdit = (dataItem, field) => {
-      this.setState({
-        editItem: { ...dataItem },
-        editItemField: field
-      });
-    };
-
-    const exitEdit = () => {
-      this.setState({
-        editItem: undefined,
-        editItemField: undefined
-      });
-    };
-    this.renderers = new Renderers(enterEdit, exitEdit, editField);
-  }
-
-  render() {
-    const { data, changes, expanded, editItem, editItemField } = this.state;
-    const editItemId = editItem ? editItem.id : null;
-
-    return (
-      <TreeList
-        style={{ maxHeight: "510px", overflow: "auto" }}
-        data={mapTree(data, subItemsField, item =>
-          extendDataItem(item, subItemsField, {
-            [expandField]: expanded.includes(item.id),
-            [editField]: item.id === editItemId ? editItemField : undefined
-          })
-        )}
-        editField={editField}
-        expandField={expandField}
-        subItemsField={subItemsField}
-        cellRender={this.renderers.cellRender}
-        rowRender={this.renderers.rowRender}
-        onItemChange={this.itemChange}
-        onExpandChange={this.onExpandChange}
-        columns={columns.map(column => ({
-          ...column,
-          editCell: editItemField === column.field ? column.editCell : undefined
-        }))}
-        toolbar={
-          <TreeListToolbar>
-            <button
-              aria-label="Cancel Changes" 
-              title="Save Changes"
-              className="k-button"
-              onClick={this.saveChanges}
-              disabled={!changes}
-            >
-              Save Changes
-            </button>
-            <button
-              aria-label="Save Changes" 
-              title="Cancel Changes"
-              className="k-button"
-              onClick={this.cancelChanges}
-              disabled={!changes}
-            >
-              Cancel Changes
-            </button>
-          </TreeListToolbar>
-        }
-      />
-    );
-  }
-
-  onExpandChange = event => {
-    this.setState({
-      expanded: event.value
-        ? this.state.expanded.filter(id => id !== event.dataItem.id)
-        : [...this.state.expanded, event.dataItem.id]
+  const enterEdit = (dataItem, field) => {
+    setPageState({
+      ...pageState,
+      editItem: { ...dataItem },
+      editItemField: field
     });
   };
 
-  saveChanges = () => {
-    employees.splice(0, employees.length, ...this.state.data);
-    this.setState({
+  const exitEdit = () => {
+    setPageState({
+      ...pageState,
+      editItem: undefined,
+      editItemField: undefined
+    });
+  };
+  const renderers = new Renderers(enterEdit, exitEdit, editField);
+
+  const { data, changes, expanded, editItem, editItemField } = pageState;
+  const editItemId = editItem ? editItem.id : null;
+
+  /* TreeList Events */
+  const handleExpandChange = (event) => {
+    setPageState({
+      ...pageState,
+      expanded: event.value
+        ? pageState.expanded.filter(id => id !== event.dataItem.id)
+        : [...pageState.expanded, event.dataItem.id]
+    });
+  };
+  const handleItemChange = (event) => {
+    setPageState({
+      ...pageState,
+      changes: true,
+      data: mapTree(pageState.data, subItemsField, item =>
+        event.dataItem.id === item.id
+          ? extendDataItem(item, subItemsField, { [event.field]: event.value })
+          : item
+      )
+    });
+  };
+
+  /* TreeListToolbar Events */
+  const handleSaveChanges = () => {
+    employees.splice(0, employees.length, ...pageState.data);
+    setPageState({
+      ...pageState,
       editItem: undefined,
       editItemField: undefined,
       changes: false
     });
   };
 
-  cancelChanges = () => {
-    this.setState({
+  const handleCancelChanges = () => {
+    setPageState({
+      ...pageState,
       data: [...employees],
       editItem: undefined,
       editItemField: undefined,
@@ -133,16 +91,44 @@ class TreeListWrap extends React.Component {
     });
   };
 
-  itemChange = event => {
-    this.setState({
-      changes: true,
-      data: mapTree(this.state.data, subItemsField, item =>
-        event.dataItem.id === item.id
-          ? extendDataItem(item, subItemsField, { [event.field]: event.value })
-          : item
-      )
-    });
-  };
+  return (
+    <TreeList
+      style={{ maxHeight: "510px", overflow: "auto" }}
+      data={mapTree(data, subItemsField, item =>
+        extendDataItem(item, subItemsField, {
+          [expandField]: expanded.includes(item.id),
+          [editField]: item.id === editItemId
+            ? editItemField
+            : undefined
+        })
+      )}
+      editField={editField}
+      expandField={expandField}
+      subItemsField={subItemsField}
+      cellRender={renderers.cellRender}
+      rowRender={renderers.rowRender}
+      onItemChange={handleItemChange}
+      onExpandChange={handleExpandChange}
+      columns={columns.map(column => ({
+        ...column,
+        editCell: editItemField === column.field
+          ? column.editCell
+          : undefined
+      }))}
+      toolbar={
+        <TreeListToolbar>
+          <button onClick={handleSaveChanges}
+            aria-label="Save Changes" title="Save Changes" 
+            className="k-button" disabled={!changes}
+          >Save Changes</button>
+          <button onClick={handleCancelChanges} 
+            aria-label="Cancel Changes" title="Cancel Changes" 
+            className="k-button" disabled={!changes}
+          >Cancel Changes</button>
+        </TreeListToolbar>
+      }
+    />
+  )
 }
 
 export default TreeListWrap;

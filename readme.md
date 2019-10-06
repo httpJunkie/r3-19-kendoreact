@@ -6,6 +6,8 @@ We have a separate route for each component, the entire project you are viewing 
 
 Check out upcoming [Webinars](https://www.telerik.com/webinars/kendo-ui/kendo-ui-r3-2019-release-webinar) or [Try KendoReact](https://www.telerik.com/download-login-v2-kendo-react-ui-b).
 
+Take [KendoReact](https://www.kendoreact.com) for a spin with a [demo of the new and updated components now!](https://r3-19-kendoreact.hooks.now.sh/)
+
 ## Scheduler (New)
 
 Inspired by the rich functionality and usability of the Outlook and Google Calendars, with the new KendoReact Scheduler, you can display the day, week, month, timeline and agenda views, group items horizontally and vertically, and convert times into any time zone. The React Scheduler enables your users to insert or edit tasks either inline or via the advanced editor which allows them to add descriptions, set recurrences, associate resources and much more.

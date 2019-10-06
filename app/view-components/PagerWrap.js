@@ -7,6 +7,7 @@ import products from "./data/pager-grid-products.json";
 import "./PagerWrap.scss";
 
 const PagerWrap = () => {
+  document.title = `KendoReact Pager ~ Telerik R3 2019 Demo`;
   const total = products.length;
   const pageSizes = [5, 10, 20];
 
@@ -26,13 +27,9 @@ const PagerWrap = () => {
     const { skip, take } = event;
     setPageState({ ...pageState, skip: skip, take: take });
   };
-
   const handleConfiguratorSettings = event => {
     if (event.setting === "buttonCount") {
-      setPageState({
-        ...pageState,
-        [event.setting]: parseInt(event.value, 10)
-      });
+      setPageState({ ...pageState, [event.setting]: parseInt(event.value, 10) });
     } else {
       setPageState({ ...pageState, [event.setting]: event.value });
     }
@@ -43,13 +40,9 @@ const PagerWrap = () => {
   return (
     <>
       <DemoConfigurator onChange={handleConfiguratorSettings} values={rest} />
-      <Pager
-        skip={skip}
-        take={take}
-        total={total}
+      <Pager skip={skip} take={take} total={total}
         buttonCount={pageState.buttonCount}
-        info={pageState.info}
-        type={pageState.type}
+        info={pageState.info} type={pageState.type}
         pageSizes={pageState.pageSizes ? pageSizes : undefined}
         previousNext={pageState.previousNext}
         onPageChange={handlePageChange}
@@ -66,7 +59,6 @@ const PagerWrap = () => {
       <ul className="product-list">
         { subProducts.map((item) => <li key={item.ProductID}>{item.ProductName}</li>) }
       </ul>
-      
     </div>
     </>
   );
