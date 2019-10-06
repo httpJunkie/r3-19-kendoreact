@@ -7,29 +7,18 @@ const Foot = () => {
   const context = useContext(AppContext);
   const isLight = context.themeMode === "light";
 
-  const handleSwitch = () => {
+  const handleThemeSwitch = () => {
     context.changeTheme(isLight ? 'dark' : 'light');
   }
-
-  const localeChanged = (event) => {
+  const handleLocaleChange = (event) => {
     context.changeLocale(event.target.value);
   }
 
   return (
     <div className="foot">
       ❄️R3 KendoReact 2019 | &nbsp;
-      <Switch
-        onChange={handleSwitch}
-        checked={isLight}
-        onLabel={"light theme"}
-        offLabel={"dark theme"}
-      /> | &nbsp;
-      <DropDownList
-        data={context.availableLocales}
-        onChange={localeChanged}
-        textField="code"
-        value={context.selectedLocale}
-      />
+      <Switch onChange={handleThemeSwitch} checked={isLight} onLabel={"light theme"} offLabel={"dark theme"} /> | &nbsp;
+      <DropDownList onChange={handleLocaleChange} data={context.availableLocales} textField="code" value={context.selectedLocale} />
     </div>
   );
 };

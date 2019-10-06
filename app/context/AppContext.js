@@ -14,7 +14,7 @@ const AppProvider = props => {
     changeTheme: mode => setApp(data => (
       {...data, themeMode: mode }
     )),
-    selectedLocale: { code: "en-US" },
+    locale: { code: "en-US" },
     availableLocales: [
       { code: "en-US" },
       { code: "de-DE" },
@@ -22,7 +22,7 @@ const AppProvider = props => {
       { code: "zh-CN" }
     ],
     changeLocale: locale => setApp(data => (
-      {...data, selectedLocale: locale }
+      {...data, locale: locale }
     ))
   });
 
