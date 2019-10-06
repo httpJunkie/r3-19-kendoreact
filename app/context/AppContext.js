@@ -10,9 +10,9 @@ const AppProvider = props => {
     toggleSidenav: value => setApp(data => (
       { ...data, navOpen: value }
     )),
-    themeMode: localStorage.getItem('kr_todo_theme') || preferredTheme,
+    theme: localStorage.getItem('kr_todo_theme') || preferredTheme,
     changeTheme: mode => setApp(data => (
-      {...data, themeMode: mode }
+      {...data, theme: mode }
     )),
     locale: { code: "en-US" },
     availableLocales: [
@@ -27,8 +27,8 @@ const AppProvider = props => {
   });
 
   useEffect(() => {
-    localStorage.setItem('kr_todo_theme', appData.themeMode)
-    }, [appData.themeMode]
+    localStorage.setItem('kr_todo_theme', appData.theme)
+    }, [appData.theme]
   );
   
   return <AppContext.Provider value={appData}>{props.children}</AppContext.Provider>

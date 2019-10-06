@@ -17,8 +17,8 @@ const colorNames = {
 
 const ColorPaletteWrap = (props) => {
   document.title = `KendoReact Pager ~ Telerik R3 2019 Demo`;
-  const themeMode = props.themeMode;
-  const isLight = themeMode === "light";
+  const theme = props.theme;
+  const isLight = theme === "light";
   const tshirtImage = isLight ? lightImage: darkImage;
 
   const [colorValue, setColorValue] = useState("#a21616");

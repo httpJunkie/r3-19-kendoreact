@@ -5,7 +5,7 @@ import { DropDownList } from "@progress/kendo-react-dropdowns";
 
 const Foot = () => {
   const context = useContext(AppContext);
-  const isLight = context.themeMode === "light";
+  const isLight = context.theme === "light";
 
   const handleThemeSwitch = () => {
     context.changeTheme(isLight ? 'dark' : 'light');

@@ -7,8 +7,8 @@ import darkImage from'../public/images/kendokaImage_dark.png';
 
 const ColorPickerWrap = (props) => {
   document.title = `KendoReact ColorPicker ~ Telerik R3 2019 Demo`;
-  const themeMode = props.themeMode;
-  const isLight = themeMode === "light";
+  const theme = props.theme;
+  const isLight = theme === "light";
   
   const kendokaImage = isLight ? lightImage: darkImage;
   const kendoColors = {

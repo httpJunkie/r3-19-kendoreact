@@ -28,7 +28,7 @@ const Frame = () => {
     <IntlProvider locale={context.locale.code}>
       <LocalizationProvider language={context.locale.code}>
     <BrowserRouter>
-      <div className={`app-container ${breakpoint} ${context.themeMode}`}>
+      <div className={`app-container ${breakpoint} ${context.theme}`}>
         <main>
           <header>
             <Logo />
@@ -43,10 +43,10 @@ const Frame = () => {
 
                 {/* These routes need props */}
                 <Route exact path="/color-palette" render={(props) => 
-                  <ColorPaletteWrap {...props} themeMode={context.themeMode} />
+                  <ColorPaletteWrap {...props} theme={context.theme} />
                 } />
                 <Route exact path="/color-picker" render={(props) => 
-                  <ColorPickerWrap {...props} themeMode={context.themeMode} />
+                  <ColorPickerWrap {...props} theme={context.theme} />
                 }  />
                 {/* These routes need props */}
 
