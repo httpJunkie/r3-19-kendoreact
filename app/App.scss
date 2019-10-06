@@ -91,10 +91,10 @@ section {
 /* Footer */
 footer {
   height: 50px;
-}
-footer div {
-  margin-left: 1em;
-  margin-top: 1em;
+  .foot-info {
+    margin-left: 1em;
+    margin-top: 1em;
+  }
 }
 
 /* Light Theme */

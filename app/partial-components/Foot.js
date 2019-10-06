@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import { Column, Row } from "simple-flexbox";
 import { Switch } from "@progress/kendo-react-inputs";
 import { DropDownList } from "@progress/kendo-react-dropdowns";
 
@@ -15,11 +16,14 @@ const Foot = () => {
   }
 
   return (
-    <div className="foot">
-      ❄️R3 KendoReact 2019 | &nbsp;
-      <Switch onChange={handleThemeSwitch} checked={isLight} onLabel={"light theme"} offLabel={"dark theme"} /> | &nbsp;
-      <DropDownList onChange={handleLocaleChange} data={context.availableLocales} textField="code" value={context.locale} />
-    </div>
+    <Row>
+      <Column flexGrow={1} >
+        <div className="foot-info">❄️R3 KendoReact 2019 | &nbsp; <Switch onChange={handleThemeSwitch} checked={isLight} onLabel={"light theme"} offLabel={"dark theme"} /></div>
+      </Column>
+      <Column flexGrow={1} horizontal="end">
+        <DropDownList onChange={handleLocaleChange} data={context.availableLocales} textField="code" value={context.locale} />
+      </Column>
+    </Row>
   );
 };
 
